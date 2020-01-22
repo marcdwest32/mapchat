@@ -15,7 +15,7 @@ export default function MapScreen({ screenProps }) {
   const messages = [
     { latitude: 29.971426, longitude: -90.072672, key: 1 },
     { latitude: 29.965022, longitude: -90.072675, key: 2 },
-    { latitude: 29.967577, longitude: -90.072677, key: 3 },
+    { latitude: 29.967577, longitude: -90.070677, key: 3 },
   ];
   return (
     <ScrollView style={styles.container}>
@@ -33,6 +33,11 @@ export default function MapScreen({ screenProps }) {
                 longitude: message.longitude,
               }}
               key={message.key}
+              onPress={() =>
+                console.log(
+                  `You are at latitude ${message.latitude} and longitude ${message.longitude}`,
+                )
+              }
             />
           );
         })}
