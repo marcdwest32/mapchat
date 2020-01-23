@@ -1,5 +1,5 @@
-import React from 'react';
-import MapView, { Marker } from 'react-native-maps';
+import React, { useState } from 'react';
+import MapView, { Marker, View } from 'react-native-maps';
 import { StyleSheet, Text, ScrollView, Dimensions } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -17,6 +17,8 @@ export default function MapScreen({ screenProps }) {
     { latitude: 29.965022, longitude: -90.072675, key: 2 },
     { latitude: 29.967577, longitude: -90.070677, key: 3 },
   ];
+
+  const [dropMarker, setDropMarker] = useState({});
   return (
     <ScrollView style={styles.container}>
       <MapView
@@ -24,7 +26,20 @@ export default function MapScreen({ screenProps }) {
         initialRegion={region}
         showsUserLocation={true}
         userTrackingMode={true}
+        onPress={event => setDropMarker(event.nativeEvent.coordinate)}
       >
+        <MapView.Marker
+          coordinate={{
+            latitude: dropMarker.latitude,
+            longitude: dropMarker.longitude,
+          }}
+          key={dropMarker.key}
+          onPress={() =>
+            console.log(
+              `You are at latitude ${dropMarker.latitude} and longitude ${dropMarker.longitude}`,
+            )
+          }
+        />
         {messages.map(message => {
           return (
             <MapView.Marker
