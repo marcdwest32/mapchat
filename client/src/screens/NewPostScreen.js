@@ -19,9 +19,19 @@ export default function NewPostScreen({ screenProps }) {
   };
 
   const postMessage = () => {
+    console.log(global, "globla")
+    let postInput = {title, message, anon, global, comments};
+    let userId = 1;
+    //todo hardcoded, fix after create profile screen
+    
+    postMessageHelper(postInput, location, userId)
+    .then((res)=>{
+      // console.log(res, 'message posted successfully')
+    })
     console.log(
       `User - ${username}, Title - ${title}, Location - ${location}, Message - ${message}`,
     );
+
     clearFields();
   };
 

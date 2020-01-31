@@ -6,17 +6,16 @@ import MessageItem from '../components/MessageItem';
 const MessagePreview = ({ messages }) =>
   messages &&
   messages.map((message, i) => {
-    console.log(message);
     return (
       <Card style={styles.container} key={i}>
         <Card.Title
           title={message.title}
-          subtitle={message.username}
-          left={() => <Avatar.Text size={36} label={message.username[0]} />}
+          subtitle={message.user ? message.user.username : ""}
+          left={() => <Avatar.Text size={36} label={message.user ? message.user.username[0] : ""} />}
         />
         <MessageItem post={message} />
         <Divider />
-        <Card.Content style={{ paddingTop: 10 }}>
+        <Card.Content style={message.post_local ? { paddingTop: 10, backgroundColor: "blue" } : { paddingTop: 10, backgroundColor: "brown" } }>
           <Paragraph>{message.text}</Paragraph>
         </Card.Content>
         <Divider />

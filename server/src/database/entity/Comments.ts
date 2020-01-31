@@ -23,9 +23,10 @@ export class Comments {
   post: Posts;
 
   @ManyToOne(type => Users, (users: Users) => users, {
+    eager: true,
+    nullable: false,
   })
-  user: Users;
-
+  public user: Users;
 }
 
 

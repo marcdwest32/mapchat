@@ -21,23 +21,22 @@ const entityManager = getManager(); // you can also get it via getConnection().m
 
 
 setTimeout(() => {
-  //make post and location
+  // make post and location
   // const post = new Posts();
   // const location = new Locations();
   // post.coordinate = location;
   // post.post_anonymous = false;
-  // post.post_local = false;
+  // post.post_local = true;
   // post.post_public = false;
-  // post.text = "post text";
+  // post.text = "Come checkout this statue";
   // post.time_expires = "unfinished feature";
-  // post.title = "post title";
+  // post.title = "What a place!";
   // location.long = 0.0;
   // location.lat = 0.0;
-  // createPost(post, location)
-  // const comment = new Comments();
-  // comment.text = "lolol";
-  // //make comment
-  // createComment(comment, 1).then(x=>console.log(x)).catch(x=>console.error(x))
+  // createPost(post, location, {id:1})
+  const comment = new Comments();
+  comment.text = "lolol";
+  //make comment
   // const user = new Users();
   // user.bio = "bio"
   // user.email = "email";
@@ -48,8 +47,9 @@ setTimeout(() => {
   // user.status = "status";
   // user.username = 'jerkey2';
   // createUser(user);
+  // createComment(comment, 1,1).then().catch(x=>console.error(x))
   // removeLike(1,1).then(x=>console.log(x)).catch(x=>console.log(x))
-  getAllPosts().then((posts: any) => console.log(posts[0]));
+  // getAllPosts().then((posts: any) => console.log(posts[0].user));
 
   // addLike(1, 1).then(x=>console.log(x)).catch(x=>{console.log(x)})
   // addLike(1, 2).then(x => console.log(x)).catch(x => { console.log(x) })

@@ -5,12 +5,16 @@ import { Posts} from "./entity/Posts";
 import { Comments} from "./entity/Comments";
 import { Likes } from "./entity/Likes";
 import { Users } from "./entity/Users";
+import { userInfo } from "os";
 const typeorm = require("typeorm"); // import * as typeorm from "typeorm";
 const entityManager = getManager(); // you can also get it via getConnection().manager
 
-const createPost = (postValues:object, locationValues:object)=>{
+const createPost = (postValues:object, locationValues:object, userValues:object)=>{
   let post = new Posts();
-  Object.assign(post, postValues)
+  let user = new Users();
+  Object.assign(user, userValues);
+  Object.assign(post, postValues);
+  post.user = user;
   if(locationValues){
     let location = new Locations();
     Object.assign(location, locationValues);
@@ -54,19 +58,23 @@ const getAllPostsInRadius = (location:Locations, radius:number)=>{
     .getMany();
 }
 const createComment = (commentValues:any, postId:(number), userId:(number))=>{
-  const comment = new Comments();
+  let comment = new Comments();
   console.log(commentValues)
   Object.assign(comment, commentValues);
   let post = new Posts()
+  let userL = new Users();
   return getPost({id:postId})
   .then((post:any)=>{
-    console.log(post)
+    // console.log(post)
     comment.post = post;
     // return entityManager.save(Comments, comment);
     return getUser({id:userId})
   })
   .then((user:any)=>{
-    comment.user = user;
+    // comment.user = user;
+    userL.id = userId;
+    comment.user = userL
+    console.log(userL)
     return entityManager.save(comment);
   })
 

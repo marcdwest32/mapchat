@@ -38,9 +38,16 @@ const MessageItem = ({ post }) => {
   const [message, setMessage] = useState({});
   const [comments, setComments] = useState([]);
   const postComment = () => {
-    console.log(comment);
     setComment('');
   };
+  useEffect(()=>{
+    //todo unhardcode from just getting the first message on server
+    getOne({id:1})
+    .then(({data})=>{
+      setMessage(data);
+      setComments(data.comments)
+    })
+  },[]);
 
   useEffect(() => {
     //todo unhardcode from just getting the first message on server
@@ -68,6 +75,7 @@ const MessageItem = ({ post }) => {
                 // title={username}
                 subtitle={message.title}
                 left={() => <Avatar.Text size={48} label='PJF' />}
+
               />
               <Card.Content style={{ paddingTop: 10 }}>
                 <Paragraph>{message.text}</Paragraph>

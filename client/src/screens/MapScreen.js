@@ -8,7 +8,6 @@ import {
   Image,
   SafeAreaView,
 } from 'react-native';
-import SlidingUpPanel from 'rn-sliding-up-panel';
 import PreviewList from '../components/PreviewList';
 import { getAll } from '../Helper';
 
