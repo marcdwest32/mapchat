@@ -1,20 +1,19 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import native, {
   StyleSheet,
   ScrollView,
   Dimensions,
   Image,
-  Text,
-  SafeAreaView,
-} from 'react-native';
-// import native from 'react-native';
-import Modal from 'react-native-modal';
-import MapView, { Callout } from 'react-native-maps';
-import { useNavigation, useFocusEffect } from 'react-navigation-hooks';
-import { getAll } from '../Helper';
-import PreviewList from '../components/PreviewList';
-import MyMarker from '../components/CustomMarker';
-import MessageItem from '../components/MessageItem';
+  SafeAreaView
+} from "react-native";
+import Modal from "react-native-modal";
+import { Icon } from "react-native-elements";
+import MapView, { Callout } from "react-native-maps";
+import { useNavigation, useFocusEffect } from "react-navigation-hooks";
+import { getAll } from "../Helper";
+import PreviewList from "../components/PreviewList";
+import MyMarker from "../components/CustomMarker";
+import MessageItem from "../components/MessageItem";
 
 const NativeView = native.View;
 
@@ -33,7 +32,7 @@ export default function MapScreen({ screenProps }) {
   };
 
   const onRegionChangeComplete = () => {
-    console.log('region changed');
+    console.log("region changed");
     if (markerRef && markerRef.current && markerRef.current.showCallout) {
       if (calloutIsRendered === true) return;
       setCalloutIsRendered(true);
@@ -51,7 +50,7 @@ export default function MapScreen({ screenProps }) {
         });
         setMessages(allMessages);
       })
-      .catch(err => console.log(err, 'useEffect getAll'));
+      .catch(err => console.log(err, "useEffect getAll"));
   }, []);
 
   useFocusEffect(
@@ -65,8 +64,8 @@ export default function MapScreen({ screenProps }) {
           });
           setMessages(allMessages);
         })
-        .catch(err => console.log(err, 'getAll mapScreen useFocusEffect'));
-    }, []),
+        .catch(err => console.log(err, "getAll mapScreen useFocusEffect"));
+    }, [])
   );
 
   const { latitude, longitude } = screenProps.location.coords;
@@ -74,7 +73,7 @@ export default function MapScreen({ screenProps }) {
     latitude,
     longitude,
     latitudeDelta: 0.001,
-    longitudeDelta: 0.001,
+    longitudeDelta: 0.001
   };
 
   const [dropMarker, setDropMarker] = useState({});
@@ -94,27 +93,27 @@ export default function MapScreen({ screenProps }) {
             dropMarker.longitude !== undefined && (
               <MapView.Marker
                 ref={markerRef}
-                title='Leave Message Here?'
+                title="Leave Message Here?"
                 coordinate={{
                   latitude: dropMarker.latitude,
-                  longitude: dropMarker.longitude,
+                  longitude: dropMarker.longitude
                 }}
                 draggable
                 onDragEnd={event => setDropMarker(event.nativeEvent.coordinate)}
                 key={dropMarker.key}
                 onPress={() => {
                   console.log(
-                    `Leave a message at latitude ${dropMarker.latitude} and longitude ${dropMarker.longitude}?`,
+                    `Leave a message at latitude ${dropMarker.latitude} and longitude ${dropMarker.longitude}?`
                   );
                   screenProps.otherLocationObj.setOtherLocation(true);
-                  navigate('NewPost', {
+                  navigate("NewPost", {
                     latitude: dropMarker.latitude,
-                    longitude: dropMarker.longitude,
+                    longitude: dropMarker.longitude
                   });
                 }}
               >
                 <Image
-                  source={require('../assets/images/message.png')}
+                  source={require("../assets/images/message.png")}
                   style={{ height: 45, width: 35 }}
                 />
                 <Callout />
@@ -129,12 +128,12 @@ export default function MapScreen({ screenProps }) {
                     calloutVisible: true,
                     post: message,
                     setMessageItemModal,
-                    messageItemModal,
+                    messageItemModal
                   }}
                   key={message.userName}
                   coords={{
                     latitude: message.latitude,
-                    longitude: message.longitude,
+                    longitude: message.longitude
                   }}
                   calloutVisible={message.calloutVisible}
                   onPress={() => toggleMessageItemModal(true)}
@@ -164,13 +163,13 @@ export default function MapScreen({ screenProps }) {
         </Modal>
       </ScrollView>
       {!displayMessagesModal && (
-        <Text
-          style={styles.button}
+        <Icon
+          reverse
+          name="ios-arrow-up"
+          type="ionicon"
+          color="#385F71"
           onPress={() => toggleDisplayMessagesModal(true)}
-        >
-          {' '}
-          Display Messages{' '}
-        </Text>
+        />
       )}
     </SafeAreaView>
   );
@@ -179,37 +178,37 @@ export default function MapScreen({ screenProps }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center"
   },
   mapStyle: {
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height,
+    width: Dimensions.get("window").width,
+    height: Dimensions.get("window").height
   },
   local: {
     borderRadius: 10,
     padding: 10,
     paddingBottom: 10,
     margin: 3,
-    backgroundColor: '#D7B377',
+    backgroundColor: "#D7B377"
   },
   global: {
     borderRadius: 10,
     padding: 10,
     paddingBottom: 10,
     margin: 3,
-    backgroundColor: '#385F71',
+    backgroundColor: "#385F71"
   },
-  avatar: { backgroundColor: '#F5F0F6' },
+  avatar: { backgroundColor: "#F5F0F6" },
   modal: {
-    justifyContent: 'flex-end',
+    justifyContent: "flex-end",
     marginTop: 400,
-    paddingBottom: 32,
+    paddingBottom: 32
   },
   button: {
-    backgroundColor: '#DDDDDD',
+    backgroundColor: "#DDDDDD",
     padding: 10,
-    borderRadius: 10,
-  },
+    borderRadius: 10
+  }
 });
