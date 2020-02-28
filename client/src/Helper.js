@@ -1,8 +1,9 @@
-import * as axios from 'axios';
+import * as axios from "axios";
 // const localIP = '172.24.12.151'; //Paul
 // const localIP = '10.0.0.28'; //paul home
 
-const localIP = '172.24.13.238'; // Marc
+// const localIP = "172.24.13.238"; // Marc
+const localIP = "192.168.0.87"; // Marc home
 
 export const getAll = () => {
   return axios.get(`http://${localIP}:8080/messages/all`);
@@ -21,9 +22,9 @@ export const postMessageHelper = (postInput, location, userId) => {
     post_anonymous: postInput.anon,
     coordinate: {
       long: location.longitude,
-      lat: location.latitude,
+      lat: location.latitude
     },
-    userId: userId,
+    userId: userId
   };
   return axios.post(`http://${localIP}:8080/messages`, body);
 };
@@ -41,7 +42,7 @@ export const postUser = userInput => {
     email: userInput.email,
     bio: userInput.bio,
     status: userInput.status,
-    public: userInput.public,
+    public: userInput.public
   };
   return axios.post(`http://${localIP}:8080/users`, body);
 };
@@ -55,7 +56,7 @@ export const updateUser = userInput => {
     bio: userInput.bio,
     status: userInput.status,
     public: userInput.public,
-    id: userInput.id,
+    id: userInput.id
   };
   return axios.patch(`http://${localIP}:8080/users`, body);
 };
@@ -64,7 +65,7 @@ export const postComment = commentInput => {
   const body = {
     postId: commentInput.postId,
     text: commentInput.text,
-    userId: commentInput.userId,
+    userId: commentInput.userId
   };
   return axios.post(`http://${localIP}:8080/comments`, body);
 };
@@ -72,7 +73,7 @@ export const postComment = commentInput => {
 export const addLike = likeInput => {
   const body = {
     userId: likeInput.userId,
-    postId: likeInput.postId,
+    postId: likeInput.postId
   };
   return axios.post(`http://${localIP}:8080/likes`, body);
 };
@@ -80,7 +81,7 @@ export const addLike = likeInput => {
 export const removeLike = likeInput => {
   const body = {
     userId: likeInput.userId,
-    postId: likeInput.postId,
+    postId: likeInput.postId
   };
   return axios.delete(`http://${localIP}:8080/likes`, { data: body });
 };
