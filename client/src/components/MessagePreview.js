@@ -40,7 +40,6 @@ const MessagePreview = ({
             title={title}
             titleStyle={post_local ? styles.titleLocal : styles.titleGlobal}
             subtitle={!post_anonymous ? username : "Anonymous"}
-            // subtitle={username}
             subtitleStyle={post_local ? styles.titleLocal : styles.titleGlobal}
             left={
               !post_anonymous
