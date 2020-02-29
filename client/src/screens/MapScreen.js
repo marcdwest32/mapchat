@@ -4,7 +4,8 @@ import native, {
   ScrollView,
   Dimensions,
   Image,
-  SafeAreaView
+  SafeAreaView,
+  TouchableOpacity
 } from "react-native";
 import Modal from "react-native-modal";
 import { Icon } from "react-native-elements";
@@ -163,13 +164,15 @@ export default function MapScreen({ screenProps }) {
         </Modal>
       </ScrollView>
       {!displayMessagesModal && (
-        <Icon
-          reverse
-          name="ios-arrow-up"
-          type="ionicon"
-          color="#385F71"
-          onPress={() => toggleDisplayMessagesModal(true)}
-        />
+        <TouchableOpacity style={styles.button}>
+          <Icon
+            reverse
+            name="ios-arrow-up"
+            type="ionicon"
+            color="#385F71"
+            onPress={() => toggleDisplayMessagesModal(true)}
+          />
+        </TouchableOpacity>
       )}
     </SafeAreaView>
   );
@@ -184,7 +187,8 @@ const styles = StyleSheet.create({
   },
   mapStyle: {
     width: Dimensions.get("window").width,
-    height: Dimensions.get("window").height
+    height: Dimensions.get("window").height,
+    backgroundColor: "transparent"
   },
   local: {
     borderRadius: 10,
@@ -206,9 +210,26 @@ const styles = StyleSheet.create({
     marginTop: 400,
     paddingBottom: 32
   },
+  buttonContainerUpDown: {
+    ...StyleSheet.absoluteFillObject,
+    flexDirection: "row",
+    justifyContent: "center"
+  },
+  buttonContainerLeftRight: {
+    ...StyleSheet.absoluteFillObject,
+    flexDirection: "column",
+    justifyContent: "center"
+  },
   button: {
-    backgroundColor: "#DDDDDD",
-    padding: 10,
-    borderRadius: 10
+    backgroundColor: "rgba(100,100,100,0.2)",
+    position: "absolute",
+    bottom: 10,
+    padding: 20,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 20,
+    height: 50,
+    width: 50,
+    marginTop: 50
   }
 });
