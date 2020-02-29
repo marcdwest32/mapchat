@@ -149,6 +149,7 @@ export default function MapScreen({ screenProps }) {
           scrollOffsetMax={400 - 300}
           backdropOpacity={0}
           onBackdropPress={() => toggleDisplayMessagesModal(false)}
+          onBackButtonPress={() => toggleDisplayMessagesModal(false)}
           style={styles.modal}
         >
           <PreviewList screenProps={screenProps} />
@@ -210,16 +211,6 @@ const styles = StyleSheet.create({
     marginTop: 400,
     paddingBottom: 32
   },
-  buttonContainerUpDown: {
-    ...StyleSheet.absoluteFillObject,
-    flexDirection: "row",
-    justifyContent: "center"
-  },
-  buttonContainerLeftRight: {
-    ...StyleSheet.absoluteFillObject,
-    flexDirection: "column",
-    justifyContent: "center"
-  },
   button: {
     backgroundColor: "rgba(100,100,100,0.2)",
     position: "absolute",
@@ -229,7 +220,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderRadius: 20,
     height: 50,
-    width: 50,
-    marginTop: 50
+    width: 50
+    // marginTop: 50
   }
 });
