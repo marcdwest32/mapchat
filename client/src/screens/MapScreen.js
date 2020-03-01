@@ -18,7 +18,7 @@ import MessageItem from "../components/MessageItem";
 
 const NativeView = native.View;
 
-export default function MapScreen({ screenProps }) {
+function MapScreen({ screenProps }) {
   const { navigate } = useNavigation();
   const [messages, setMessages] = useState([]);
   const [messageItem, setMessageItem] = useState({});
@@ -179,6 +179,10 @@ export default function MapScreen({ screenProps }) {
   );
 }
 
+MapScreen.navigationOptions = {
+  title: "Area Messages"
+};
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -221,6 +225,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     height: 50,
     width: 50
-    // marginTop: 50
   }
 });
+
+export default MapScreen;
