@@ -61,7 +61,7 @@ const MessageItem = ({
   return (
     <Card style={styles.container} title="Show messageModal">
       <Text onPress={() => toggleMessageModal(true)} style={{ marginTop: -10 }}>
-        {text}
+        {post_local ? "!! You must be in range to read this message !!" : text}
       </Text>
       <Modal
         isVisible={messageModal}
@@ -96,7 +96,9 @@ const MessageItem = ({
               <Paragraph
                 style={post_local ? styles.localMessage : styles.globalMessage}
               >
-                {text}
+                {post_local
+                  ? "!! You must be in range to read this message !!"
+                  : text}
               </Paragraph>
             </Card>
             {post.comments &&
@@ -112,7 +114,7 @@ const MessageItem = ({
                 backgroundColor: "#F5F0F6"
               }}
             >
-              {post_public && (
+              {post_public && !post_local && (
                 <Card.Content>
                   <TextInput
                     label="Comment"
@@ -175,7 +177,8 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 5,
     borderBottomRightRadius: 5,
     marginVertical: -2,
-    backgroundColor: "#D7B377"
+    backgroundColor: "#D7B377",
+    color: "red"
   }
 });
 
