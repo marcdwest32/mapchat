@@ -91,7 +91,11 @@ const MessagePreview = ({
               setAllModals(arr);
             }}
           >
-            <Profile toggleProfileModal={toggleProfileModal} post={message} />
+            <Profile
+              toggleProfileModal={toggleProfileModal}
+              post={message}
+              email={screenProps.user.email}
+            />
           </Modal>
         </Card>
       );
