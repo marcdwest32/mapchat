@@ -131,7 +131,7 @@ function MapScreen({ screenProps }) {
                     setMessageItemModal,
                     messageItemModal
                   }}
-                  key={message.userName}
+                  key={i}
                   coords={{
                     latitude: message.latitude,
                     longitude: message.longitude
