@@ -5,6 +5,7 @@ import native, {
   Dimensions,
   Image,
   SafeAreaView,
+  Text,
   TouchableOpacity
 } from "react-native";
 import Modal from "react-native-modal";
@@ -179,10 +180,6 @@ function MapScreen({ screenProps }) {
   );
 }
 
-MapScreen.navigationOptions = {
-  title: "Area Messages"
-};
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -225,7 +222,21 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     height: 50,
     width: 50
+  },
+  baseText: {
+    color: "#D7B377",
+    fontSize: 20,
+    fontWeight: "bold"
   }
 });
+
+MapScreen.navigationOptions = {
+  title: "Area Messages",
+  headerTintColor: "#D7B377",
+  headerStyle: {
+    backgroundColor: "#2B4162"
+  },
+  headerRight: <Text style={styles.baseText}> MapChat </Text>
+};
 
 export default MapScreen;

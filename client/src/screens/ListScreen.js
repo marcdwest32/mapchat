@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { ScrollView } from 'react-native';
-import MessagePreview from '../components/MessagePreview';
-import { getAll } from '../Helper';
-import { useFocusEffect } from 'react-navigation-hooks';
+import React, { useState, useEffect, useCallback } from "react";
+import { ScrollView, StyleSheet, Text } from "react-native";
+import MessagePreview from "../components/MessagePreview";
+import { getAll } from "../Helper";
+import { useFocusEffect } from "react-navigation-hooks";
 
 const ListScreen = ({ screenProps }) => {
   const [messages, setMessages] = useState([]);
@@ -13,20 +13,20 @@ const ListScreen = ({ screenProps }) => {
     getAll().then(response => {
       const allPosts = response.data;
       setMessages(allPosts);
-      console.log('resetPosts called listscreen.js');
+      console.log("resetPosts called listscreen.js");
       setTick(tick + 1);
     });
   };
 
   useFocusEffect(
     useCallback(() => {
-      console.debug('screen takes focus');
+      console.debug("screen takes focus");
       resetPosts();
       //component did unmount
       return () => {
-        console.debug('screen loses focus');
+        console.debug("screen loses focus");
       };
-    }, [setTick]),
+    }, [setTick])
   );
 
   return (
@@ -43,8 +43,21 @@ const ListScreen = ({ screenProps }) => {
   );
 };
 
+const styles = StyleSheet.create({
+  baseText: {
+    color: "#D7B377",
+    fontSize: 20,
+    fontWeight: "bold"
+  }
+});
+
 ListScreen.navigationOptions = {
-  title: 'Nearby Messages',
+  title: "Nearby Messages",
+  headerTintColor: "#D7B377",
+  headerStyle: {
+    backgroundColor: "#2B4162"
+  },
+  headerRight: <Text style={styles.baseText}> MapChat </Text>
 };
 
 export default ListScreen;
