@@ -68,7 +68,6 @@ const MessagePreview = ({
                   )
             }
           />
-          <Divider />
           <MessageItem
             messages={messages}
             post={message}
