@@ -10,7 +10,7 @@ import {
 } from "react-native-paper";
 
 const Profile = props => {
-  const { toggleProfileModal, post } = props;
+  const { toggleProfileModal, post, email } = props;
   const { user } = post;
   const initials = user.name_first[0] + user.name_last[0];
 
@@ -56,7 +56,7 @@ const Profile = props => {
                 Bio: {user.bio}
               </Text>
               <Divider />
-              {buttonOn && (
+              {buttonOn && email !== user.email && (
                 <Button
                   icon="account-plus"
                   mode="contained"
