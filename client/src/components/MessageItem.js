@@ -61,7 +61,7 @@ const MessageItem = ({
   return (
     <Card style={styles.container} title="Show messageModal">
       <Text onPress={() => toggleMessageModal(true)} style={{ marginTop: -10 }}>
-        {post_local ? "!! You must be in range to read this message !!" : text}
+        {post_local ? "You must be in range to read this message" : text}
       </Text>
       <Modal
         isVisible={messageModal}
@@ -97,7 +97,7 @@ const MessageItem = ({
                 style={post_local ? styles.localMessage : styles.globalMessage}
               >
                 {post_local
-                  ? "!! You must be in range to read this message !!"
+                  ? "You must be in range to read this message"
                   : text}
               </Paragraph>
             </Card>
@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 5,
     marginVertical: -2,
     backgroundColor: "#D7B377",
-    color: "red"
+    color: "gray"
   }
 });
 
