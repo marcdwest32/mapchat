@@ -115,8 +115,8 @@ function MapScreen({ screenProps }) {
                 }}
               >
                 <Image
-                  source={require("../assets/images/message.png")}
-                  style={{ height: 45, width: 35 }}
+                  source={require("../assets/images/pngfuel.png")}
+                  style={{ height: 25, width: 35 }}
                 />
                 <Callout />
               </MapView.Marker>
