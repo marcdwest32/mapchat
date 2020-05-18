@@ -1,5 +1,5 @@
-import React from 'react';
-import MapView, { Callout } from 'react-native-maps';
+import React from "react";
+import MapView, { Callout } from "react-native-maps";
 
 class MyMarker extends React.Component {
   constructor(props) {
@@ -8,7 +8,7 @@ class MyMarker extends React.Component {
 
   componentDidMount() {
     setTimeout(() => {
-      console.log(this.marker.showCallout, 'hello');
+      console.log(this.props.props.post.post_local, "hello");
       this.marker.showCallout();
     }, 1);
   }
@@ -18,6 +18,7 @@ class MyMarker extends React.Component {
       <MapView.Marker
         title={this.props.props.post.title}
         coordinate={this.props.coords}
+        pinColor={this.props.props.post.post_local ? "wheat" : "navy"}
         ref={ref => {
           this.marker = ref;
         }}
@@ -27,8 +28,8 @@ class MyMarker extends React.Component {
           tooltip
           onPress={e => {
             if (
-              e.nativeEvent.action === 'marker-inside-overlay-press' ||
-              e.nativeEvent.action === 'callout-inside-press'
+              e.nativeEvent.action === "marker-inside-overlay-press" ||
+              e.nativeEvent.action === "callout-inside-press"
             ) {
               return;
             }

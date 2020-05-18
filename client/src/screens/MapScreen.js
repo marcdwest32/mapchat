@@ -5,6 +5,7 @@ import native, {
   Dimensions,
   Image,
   SafeAreaView,
+  Text,
   TouchableOpacity
 } from "react-native";
 import Modal from "react-native-modal";
@@ -18,7 +19,7 @@ import MessageItem from "../components/MessageItem";
 
 const NativeView = native.View;
 
-export default function MapScreen({ screenProps }) {
+function MapScreen({ screenProps }) {
   const { navigate } = useNavigation();
   const [messages, setMessages] = useState([]);
   const [messageItem, setMessageItem] = useState({});
@@ -114,8 +115,8 @@ export default function MapScreen({ screenProps }) {
                 }}
               >
                 <Image
-                  source={require("../assets/images/message.png")}
-                  style={{ height: 45, width: 35 }}
+                  source={require("../assets/images/pngfuel.png")}
+                  style={{ height: 25, width: 35 }}
                 />
                 <Callout />
               </MapView.Marker>
@@ -131,7 +132,7 @@ export default function MapScreen({ screenProps }) {
                     setMessageItemModal,
                     messageItemModal
                   }}
-                  key={message.userName}
+                  key={i}
                   coords={{
                     latitude: message.latitude,
                     longitude: message.longitude
@@ -221,6 +222,21 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     height: 50,
     width: 50
-    // marginTop: 50
+  },
+  baseText: {
+    color: "#D7B377",
+    fontSize: 20,
+    fontWeight: "bold"
   }
 });
+
+MapScreen.navigationOptions = {
+  title: "Area Messages",
+  headerTintColor: "#D7B377",
+  headerStyle: {
+    backgroundColor: "#2B4162"
+  },
+  headerRight: <Text style={styles.baseText}> MapChat </Text>
+};
+
+export default MapScreen;
